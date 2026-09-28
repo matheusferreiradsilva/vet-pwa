@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VetCare | Gestão da clínica",
-  description: "Acompanhe a rotina da sua clínica veterinária.",
+  title: "Vet | Gestão simples para o veterinário",
+  description: "Organize pacientes, atendimentos e financeiro em um só lugar.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
