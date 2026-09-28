@@ -18,7 +18,7 @@ export function Navbar() {
           <span className="grid size-8 place-items-center rounded-xl bg-emerald-700 text-2xl leading-none text-white" aria-hidden="true">
             +
           </span>
-          <span>VetCare</span>
+          <span>Vet</span>
         </Link>
         <ul className="order-3 flex w-full gap-1 overflow-x-auto pb-0.5 sm:order-none sm:w-auto sm:flex-1 sm:justify-center">
           {links.map((link) => (
