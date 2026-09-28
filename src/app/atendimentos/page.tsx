@@ -1,69 +1,20 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+const appointments = [
+  { time: "14:00", name: "João Silva", pet: "Bento · Golden Retriever", detail: "Consulta de rotina", status: "Agendado", tone: "bg-blue-100 text-blue-900" },
+  { time: "15:30", name: "Maria Souza", pet: "Luna · Gato SRD", detail: "Retorno pós-operatório", status: "Confirmado", tone: "bg-emerald-100 text-emerald-900" },
+  { time: "17:00", name: "Carlos Oliveira", pet: "Thor · Beagle", detail: "Vacinação anual", status: "Aguardando", tone: "bg-amber-100 text-amber-900" },
+];
+
+export default function Atendimentos() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Atendimentos{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="mx-auto w-[calc(100%-2rem)] max-w-[1180px] flex-1 py-10 sm:w-[calc(100%-2.5rem)] sm:py-14">
+      <section className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div><h1 className="text-[clamp(2rem,5vw,3.4rem)] font-bold leading-none tracking-[-0.06em] text-emerald-950">Atendimentos</h1><p className="mt-3 max-w-xl text-base leading-7 text-slate-500">A agenda do dia, com o contexto certo para você começar cada consulta preparado.</p></div><button className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 text-sm font-bold text-white shadow-sm hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"><span className="text-lg leading-none" aria-hidden="true">+</span> Novo atendimento</button></section>
+      <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white" aria-labelledby="agenda-title"><div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 px-5 py-4 sm:px-6"><div><h2 id="agenda-title" className="text-lg font-bold text-emerald-950">Sábado, 8 de março</h2><p className="mt-1 text-xs text-slate-500">3 horários na agenda · 1 aguardando confirmação</p></div><div className="flex items-center gap-1 rounded-lg bg-slate-100 p-1 text-xs font-bold"><button className="rounded-md bg-white px-3 py-1.5 text-emerald-900 shadow-sm">Dia</button><button className="px-3 py-1.5 text-slate-500">Semana</button></div></div><ul className="divide-y divide-slate-200">{appointments.map((appointment) => <li key={appointment.time} className="grid gap-4 px-5 py-5 sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:items-center sm:px-6"><time className="text-lg font-bold tracking-[-0.04em] text-emerald-700">{appointment.time}</time><div><div className="flex flex-wrap items-center gap-2"><strong className="text-sm text-slate-800">{appointment.name}</strong><span className={`rounded-full px-2 py-0.5 text-[0.65rem] font-bold ${appointment.tone}`}>{appointment.status}</span></div><p className="mt-1 text-xs text-slate-500">{appointment.pet} · {appointment.detail}</p></div><Link href="/pacientes" className="text-xs font-bold text-emerald-700 hover:text-emerald-950">Ver prontuário →</Link></li>)}</ul></section>
+        <aside className="rounded-2xl border border-emerald-800 bg-emerald-800 p-5 text-white sm:p-6" aria-labelledby="next-step-title"><p className="text-xs font-extrabold uppercase tracking-[0.12em] text-emerald-200">Próximo passo</p><h2 id="next-step-title" className="mt-3 text-2xl font-bold leading-tight tracking-[-0.04em]">Prepare a consulta das 14:00</h2><p className="mt-3 text-sm leading-6 text-emerald-100">Bento retorna para uma consulta de rotina. O histórico e a anamnese estarão juntos no prontuário.</p><Link href="/pacientes" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-white hover:text-emerald-100">Abrir paciente <span aria-hidden="true">→</span></Link></aside>
+      </div>
+      <section className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 sm:p-5"><div><h2 className="text-sm font-bold text-amber-950">Depois do atendimento</h2><p className="mt-1 text-xs text-amber-900/70">Registre a anamnese e emita uma receita sem sair do prontuário.</p></div><Link href="/pacientes" className="text-xs font-bold text-emerald-700 hover:text-emerald-950">Ver pacientes →</Link></section>
+    </main>
   );
 }

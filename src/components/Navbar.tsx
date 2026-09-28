@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { label: "Início", href: "/" },
@@ -8,8 +11,10 @@ const links = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
+
   return (
-    <header className="border-b border-slate-200 bg-white/90">
+    <header className="sticky top-0 z-20 border-b border-slate-200/90 bg-[#f7f8f5]/95 backdrop-blur">
       <nav
         className="mx-auto flex min-h-[4.75rem] w-[calc(100%-2rem)] max-w-[1180px] flex-wrap items-center gap-x-4 gap-y-2 py-3 sm:w-[calc(100%-2.5rem)] sm:gap-8"
         aria-label="Navegação principal"
@@ -25,7 +30,7 @@ export function Navbar() {
             <li key={link.href}>
               <Link
                 className={`block whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold ${
-                  link.href === "/"
+                  pathname === link.href
                     ? "bg-emerald-50 text-emerald-950"
                     : "text-slate-500 hover:bg-slate-50 hover:text-emerald-950"
                 } focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700`}
