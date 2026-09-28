@@ -22,3 +22,31 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
 }
+
+.form-input {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.7rem 0.8rem;
+  color: #1e293b;
+  font-size: 0.875rem;
+  font-weight: 400;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #047857;
+  box-shadow: 0 0 0 3px rgb(16 185 129 / 0.16);
+}
+
+.label {
+  display: block;
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
