@@ -1,0 +1,32 @@
+"use client";
+
+import Link from "next/link";
+import { FormEvent, useState } from "react";
+import type { Patient } from "@/lib/mock-data";
+
+export function PatientWorkspace({ patient }: { patient: Patient }) {
+  const [tutorOpen, setTutorOpen] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [evolutionSaved, setEvolutionSaved] = useState(false);
+
+  function saveEvolution(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setEvolutionSaved(true);
+  }
+
+  return (
+    <main className="mx-auto w-[calc(100%-2rem)] max-w-[1180px] flex-1 py-8 sm:w-[calc(100%-2.5rem)] sm:py-12">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3"><Link href="/pacientes" className="text-sm font-bold text-emerald-700 hover:text-emerald-950">← Pacientes</Link><div className="flex gap-2"><button onClick={() => setEditing(!editing)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:border-emerald-200">{editing ? "Fechar edição" : "Editar ficha"}</button><Link href="/atendimentos/appointment-1" className="rounded-xl bg-emerald-700 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-800">Iniciar atendimento</Link></div></div>
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"><div className="flex items-center gap-4"><span className="grid size-14 place-items-center rounded-2xl bg-emerald-50 text-lg font-bold text-emerald-800">{patient.petName.slice(0, 2).toUpperCase()}</span><div><p className="text-xs font-bold uppercase tracking-[0.1em] text-emerald-700">Paciente</p><h1 className="mt-1 text-3xl font-bold tracking-[-0.05em] text-emerald-950">{patient.petName}</h1><p className="mt-1 text-sm text-slate-500">{patient.species} · {patient.breed} · {patient.age} · {patient.weight}</p></div></div><span className="self-start rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-bold text-emerald-900">{patient.status}</span></div>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-4"><p className="text-xs text-slate-500">Tutor: <strong className="text-slate-700">{patient.tutorName}</strong> · {patient.tutorPhone}</p><button onClick={() => setTutorOpen(!tutorOpen)} className="text-xs font-bold text-emerald-700 hover:text-emerald-950">{tutorOpen ? "Ocultar dados do tutor" : "Ver dados do tutor"} {tutorOpen ? "↑" : "↓"}</button></div>
+        {tutorOpen && <div className="mt-4 grid gap-3 rounded-xl bg-slate-50 p-4 text-sm sm:grid-cols-3"><div><span className="label">E-mail</span><p>{patient.tutorEmail || "Não informado"}</p></div><div><span className="label">CPF</span><p>{patient.tutorCpf || "Não informado"}</p></div><div><span className="label">Endereço</span><p>{patient.tutorAddress || "Não informado"}</p></div></div>}
+      </section>
+      {editing && <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-7"><h2 className="text-lg font-bold text-emerald-950">Editar ficha do paciente</h2><div className="mt-4 grid gap-4 sm:grid-cols-2"><label className="text-sm font-semibold text-slate-700">Nome do pet<input className="form-input" defaultValue={patient.petName} /></label><label className="text-sm font-semibold text-slate-700">Raça<input className="form-input" defaultValue={patient.breed} /></label><label className="text-sm font-semibold text-slate-700">Peso atual<input className="form-input" defaultValue={patient.weight} /></label><label className="text-sm font-semibold text-slate-700">Status<input className="form-input" defaultValue={patient.status} /></label></div><button className="mt-5 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-bold text-white">Salvar alterações</button></section>}
+      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(280px,0.7fr)]">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7"><div className="flex items-center justify-between"><h2 className="text-lg font-bold text-emerald-950">Histórico de atendimentos</h2><span className="text-xs text-slate-500">2 registros</span></div>        <article className="mt-5 rounded-xl bg-slate-50 p-4"><div className="flex flex-wrap justify-between gap-2"><strong className="text-sm text-slate-800">Consulta de rotina e otite</strong><time className="text-xs text-slate-500">28/09/2026</time></div><p className="mt-2 text-sm leading-6 text-slate-600">{patient.complaint}</p><div className="mt-3 flex flex-wrap gap-2"><Link href="/atendimentos/appointment-1" className="text-xs font-bold text-emerald-700">Abrir prontuário →</Link><button className="text-xs font-bold text-slate-500 hover:text-emerald-900">Ver receita</button></div></article><form onSubmit={saveEvolution} className="mt-6 border-t border-slate-200 pt-5"><h3 className="text-sm font-bold text-emerald-950">Registrar evolução clínica</h3><textarea required className="form-input mt-3 min-h-28 resize-y" placeholder="Registre um retorno, contato ou mudança no quadro..." /><div className="mt-3 flex items-center justify-between gap-3"><span className="text-xs text-slate-500">{evolutionSaved ? "Evolução salva localmente." : "Data e hora serão preenchidas automaticamente."}</span><button className="rounded-xl bg-emerald-700 px-4 py-2.5 text-xs font-bold text-white hover:bg-emerald-800">Adicionar evolução</button></div></form></section>
+        <aside className="space-y-4"><section className="rounded-2xl border border-amber-200 bg-amber-50 p-5"><h2 className="text-sm font-bold text-amber-950">Alertas clínicos</h2><div className="mt-3 flex flex-wrap gap-2">{patient.alerts.length ? patient.alerts.map((alert) => <span key={alert} className="rounded-full bg-amber-200 px-2.5 py-1 text-xs font-bold text-amber-950">{alert}</span>) : <span className="text-sm text-amber-900/70">Nenhum alerta registrado.</span>}</div><p className="mt-3 text-xs leading-5 text-amber-900/80">{patient.allergies}</p></section><section className="rounded-2xl border border-slate-200 bg-white p-5"><h2 className="text-sm font-bold text-emerald-950">Completar cadastro</h2><p className="mt-2 text-sm leading-6 text-slate-500">Adicione informações que ajudam no atendimento e na emissão de documentos.</p><button onClick={() => setTutorOpen(true)} className="mt-4 text-xs font-bold text-emerald-700">Completar dados →</button></section></aside>
+      </div>
+    </main>
+  );
+}
