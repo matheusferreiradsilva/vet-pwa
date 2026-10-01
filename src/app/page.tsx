@@ -37,7 +37,7 @@ export default function Home() {
       >
         <div>
           <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.12em] text-emerald-700">
-            Visão geral da clínica
+            Painel do consultório
           </p>
           <h1
             id="welcome-title"
@@ -46,7 +46,7 @@ export default function Home() {
             Olá, Fulano!
           </h1>
           <p className="max-w-2xl text-base leading-7 text-slate-500 sm:text-lg">
-            Um resumo simples para você começar o dia com tudo sob controle.
+            Pacientes, atendimentos e financeiro em um só lugar.
           </p>
         </div>
         <time
@@ -63,18 +63,18 @@ export default function Home() {
       >
         <article className="flex min-h-32 flex-col justify-between rounded-2xl border border-emerald-700 bg-emerald-700 p-5 text-white">
           <span className="text-sm font-semibold">Atendimentos hoje</span>
-          <strong className="text-4xl font-bold tracking-[-0.06em]">08</strong>
-          <span className="text-sm text-emerald-100">3 já confirmados</span>
+          <strong className="text-4xl font-bold tracking-[-0.06em]">03</strong>
+          <span className="text-sm text-emerald-100">1 aguardando confirmação</span>
         </article>
         <article className="flex min-h-32 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5">
           <span className="text-sm font-semibold text-slate-700">Pacientes ativos</span>
-          <strong className="text-4xl font-bold tracking-[-0.06em] text-emerald-950">124</strong>
-          <span className="text-sm text-slate-500">+6 este mês</span>
+          <strong className="text-4xl font-bold tracking-[-0.06em] text-emerald-950">02</strong>
+          <span className="text-sm text-slate-500">1 cadastro para completar</span>
         </article>
         <article className="flex min-h-32 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5">
-          <span className="text-sm font-semibold text-slate-700">Receita no mês</span>
-          <strong className="text-4xl font-bold tracking-[-0.06em] text-emerald-950">R$ 8.420</strong>
-          <span className="text-sm text-slate-500">12% acima do mês passado</span>
+          <span className="text-sm font-semibold text-slate-700">Resultado do mês</span>
+          <strong className="text-4xl font-bold tracking-[-0.06em] text-emerald-950">R$ 318</strong>
+          <span className="text-sm text-slate-500">Recebimentos menos gastos</span>
         </article>
       </section>
 
@@ -165,7 +165,7 @@ export default function Home() {
             Lembrete do dia
           </h2>
           <p className="mb-0 text-xs text-amber-900/70">
-            Há 2 prontuários aguardando atualização após o atendimento.
+            Há 1 atendimento aguardando anotações e fechamento financeiro.
           </p>
         </div>
         <a
