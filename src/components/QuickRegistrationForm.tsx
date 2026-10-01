@@ -2,17 +2,18 @@
 
 import { FormEvent, useState } from "react";
 import Link from "next/link";
+import { cadastrarPaciente } from "@/app/actions";
 
 export function QuickRegistrationForm() {
   const [saved, setSaved] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSaved(true);
-  }
+  //function handleSubmit(event: FormEvent<HTMLFormElement>) {
+   // event.preventDefault();
+    //setSaved(true);
+  
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form action={cadastrarPaciente} className="space-y-6">
       <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4 text-sm text-emerald-950">
         <strong>Cadastro em menos de um minuto.</strong>
         <p className="mt-1 text-emerald-900/75">Nome e telefone são suficientes para salvar agora. Você pode completar a ficha depois.</p>
