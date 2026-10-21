@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vet PWA
 
-## Getting Started
+O Vet PWA é uma aplicação web progressiva para auxiliar veterinários que
+realizam atendimentos domiciliares.
 
-First, run the development server:
+O objetivo do projeto é centralizar a rotina do veterinário em um único lugar,
+permitindo organizar:
+
+- pacientes e seus tutores;
+- agenda de atendimentos;
+- prontuários e informações clínicas;
+- endereços para visitas domiciliares;
+- controle financeiro dos atendimentos.
+
+O projeto está sendo desenvolvido com Next.js, React, TypeScript e Tailwind
+CSS. O Supabase será utilizado como backend, fornecendo autenticação,
+persistência dos dados e controle de acesso.
+
+## Status do projeto
+
+A interface inicial está em desenvolvimento. Algumas telas ainda utilizam
+dados de exemplo enquanto a integração com o Supabase é construída.
+
+## Executando localmente
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts disponíveis
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev    # inicia o ambiente de desenvolvimento
+npm run build  # gera a versão de produção
+npm run start  # inicia a versão de produção
+```
 
-## Learn More
+## Estrutura inicial
 
-To learn more about Next.js, take a look at the following resources:
+As principais áreas da aplicação são:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/` — visão geral da rotina do veterinário;
+- `/pacientes` — cadastro e gerenciamento de pacientes;
+- `/atendimentos` — agenda e registros de atendimentos;
+- `/financeiro` — acompanhamento financeiro.
